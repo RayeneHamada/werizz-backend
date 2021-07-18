@@ -26,11 +26,14 @@ var userSchema = new mongoose.Schema({
         type: String,
         unique : true
       },
+      profile_image: {
+        type:String  
+      },
       business: {
           company_name: {
             type: String
           },
-          adress : {
+          address : {
             type:String,
           },
           registration_number: {
@@ -38,7 +41,11 @@ var userSchema = new mongoose.Schema({
           },
           website: {
             type : String
-          }
+        },
+        tax_registration_number_image: {
+            type : String
+          },
+          
       },
       
       activated: {
