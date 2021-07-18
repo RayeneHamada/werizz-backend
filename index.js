@@ -1,6 +1,7 @@
 require('dotenv').config();
 // require models
 require('./models/userModel');
+require('./models/categoryModel');
 
 
 require('./config/dbConfig');
@@ -28,9 +29,11 @@ app.use(bodyParser.json());
 
 //import routes
 const userRoute = require('./routes/userRoute');
+const categoryRoute = require('./routes/categoryRoute');
 
 //use routes
 app.use('/user', userRoute);
+app.use('/category', categoryRoute);
 
 
 app.get('/test', (req,res) => { return res.json({ahla:'ahla'}) });

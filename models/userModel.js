@@ -36,24 +36,6 @@ var userSchema = new mongoose.Schema({
           address : {
             type:String,
         },
-        addressv2 : {
-          name: {
-            type: String
-          },
-          street : {
-            type:String,
-          },
-          land_mark: {
-            type : String
-          },
-          city: {
-            type : String
-          },
-          geo_point: {
-            type: Point,
-            coordinates:[]
-          },
-        },
           registration_number: {
             type : String
           },
