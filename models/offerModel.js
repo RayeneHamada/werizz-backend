@@ -31,6 +31,10 @@ var offerSchema = new Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"Users"
     },
+    category:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Categories"
+    },
     
 });
 // Export Offer model
