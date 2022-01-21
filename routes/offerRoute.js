@@ -10,6 +10,7 @@ router.post('/create', [jwtHelper.verifyBusinessJwtToken, imageUpload.single('im
 router.post('/publish', jwtHelper.verifyBusinessJwtToken, main_controller.publishOffer);
 router.post('/updateImage', [jwtHelper.verifyBusinessJwtToken,imageUpload.single('image')], main_controller.updateImage);
 router.get('/getOffer/:id', [jwtHelper.verifyJwtToken], main_controller.getOffer);
+router.get('/myRecentOffers', [jwtHelper.verifyBusinessJwtToken], main_controller.myRecentOffers);
 router.post('/updateOffer', [jwtHelper.verifyBusinessJwtToken], main_controller.updateOffer);
 router.delete('/delete/:id', [jwtHelper.verifyBusinessJwtToken], main_controller.deleteOffer);
 

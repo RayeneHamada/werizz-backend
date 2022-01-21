@@ -74,7 +74,6 @@ exports.publishOffer = function(req,res,next)
         });
 }
 
-
 exports.updateImage = (req, res) => {
     Offer.findOne({ _id: req.body.id },
       (err, offer) => {
@@ -260,5 +259,13 @@ exports.getOffer = (req, res) => {
               )
             }
     });
+  
+}
+
+exports.myRecentOffers = async (req, res) => {
+  recent_offers = await Offer.find({ owner: req._id }, { "stats.reach": 1, "title": 1, "discount": 1, "cover": 1, "start_date": 1 ,"expire_date":1}).
+                              sort({ "expire_date": -1 })
+  res.status(200).send(recent_offers);
+
   
 }

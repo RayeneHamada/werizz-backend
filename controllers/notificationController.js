@@ -10,6 +10,7 @@ exports.sendNotification = async (notif) => {
     notification.type = notif.type;
     notification.content = notif.content;
     await notification.save();
+    global.io.sockets.to(WebSockets.getSocketId(notification.receiver)).emit('notification', notification);
   }
   catch (err) {
     console.log('err' + err);

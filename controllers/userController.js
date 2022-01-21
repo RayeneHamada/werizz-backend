@@ -167,7 +167,7 @@ exports.authenticate = (req, res, next) => {
     // error from passport middleware
     if (err) return res.status(400).json(err);
     // registered user
-    else if (user) return res.status(200).json({ "token": user.generateJwt(), id: user._id, fullName: user.fullName, role: user.role, activated: user.activated });
+    else if (user) return res.status(200).json({ "token": user.generateJwt(), id: user._id, fullName: user.fullName, role: user.role, activated: user.activated, profile_image: user.profile_image, followers: user.followers.length});
     // unknown user or wrong password
     else return res.status(404).json(info);
   })(req, res);
@@ -625,6 +625,6 @@ exports.businessHome = async (req, res) => {
   let comments = 0;
   let messages = 0;
   comments = await Notification.countDocuments({ receiver: req._id, is_read: false }).exec();
-  recent_offers = await Offer.find({ owner: req._id }).limit(2);
-  res.status(200).send({ "comments": comments,"messages":messages,"recent_offers":recent_offers });
+  recent_offers = await Offer.find({ owner: req._id },{"stats.reach":1,"title":1,"discount":1,"cover":1,"start_date":1,"expire_date":1}).sort({"expire_date":-1}).limit(3);
+  res.status(200).send({ "new": {"comments":comments,"messages":messages},"recent_offers":recent_offers });
 }
